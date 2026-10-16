@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Invoice {
+    - title: String
+    - customerAddress: String
+    - lineItems: ArrayList<LineItem>
+    + addLineItem(item: LineItem)
+    + calculateTotalDue(): double
+    + formatInvoice(): String
+}
+
+class LineItem {
+    - quantity: int
+    + calculateTotal(): double
+}
+
+class Product {
+    - name: String
+    - unitPrice: double
+    + getName(): String
+    + getUnitPrice(): double
+}
+
+Invoice "1" *-- "*" LineItem : contains >
+LineItem "1" *-- "1" Product : references >
+
+@enduml
